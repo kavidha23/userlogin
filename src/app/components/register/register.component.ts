@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class RegisterComponent implements OnInit {
   _id!: string;
   user!: User;
-  Roles: any = ['Admin', 'Author', 'Reader'];
+  Roles: any = ['Admin', 'Author', 'Reader', 'Supervisor'];
 
  
 
