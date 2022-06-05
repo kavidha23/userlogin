@@ -1,0 +1,37 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+
+        <!-- <form class="example-form"> -->
+        <form (ngSubmit)="onSubmit()">
+
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}">                
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">                
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="user.emailId" [ngModelOptions]="{standalone: true}">                
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Choose a role...</mat-label>
+                    <mat-select>
+                        <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </mat-card-content>
+
+            <button mat-stroked-button color="accent" type="submit" class="btn-block">Register</button>
+
+        </form>
+    </mat-card>
+</div>

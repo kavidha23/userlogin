@@ -14,39 +14,34 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  _id!: string;
-  user!: User;
+  user: User = new User()
+  submitted = false;
   Roles: any = ['Admin', 'Author', 'Reader', 'Supervisor'];
-
- 
 
 constructor(private userService: UserService, private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.user = new User()
-    this._id = this.route.snapshot.params["_id"]
-    this.userService.getUser(this._id).subscribe((data: any) =>{
-
-      this.user = data;
-    },(error: any) => console.log(error));
-    
-
-    
   }
 
-  updateUser() {
+  save() {
+    this.userService.registerUser(this.user).subscribe(data =>{
+        console.log("data ", data)
+        this.user = new User();
+        this.gotoRegister()
+    },
+    error => console.error());
 
-    this.userService.updateUser(this._id, this.user).subscribe( (data: any) => {
-      console.log("Update User Component File", data)
-      this.user = new User();
-      
-    }, (error: any) => console.log(error));
+}
 
-    
-      
-  }
   onSubmit(){
-    this.updateUser();
+    this.submitted = true;
+      this.save()
+
   }
+
+  gotoRegister() {
+    this.router.navigate(['/register']);
+}
 
 }

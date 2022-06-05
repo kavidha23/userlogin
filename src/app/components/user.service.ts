@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private baseUrl = 'http://localhost:5000/login';
+  private registerUrl = 'http://localhost:5000/register';
+
 
   constructor(private http: HttpClient) {}
 
@@ -14,19 +16,24 @@ export class UserService {
     return this.http.post(`${this.baseUrl}`, user);
   }
 
-  getUsersList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+  registerUser(user: Object): Observable<Object> {
+    console.log("user", user)
+    return this.http.post(`${this.registerUrl}`, user);
   }
 
-  getUser(_id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${_id}`);
-  }
+  // getUsersList(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}`);
+  // }
 
-  deleteUser(_id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${_id}`);
-  }
+  // getUser(_id: string): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/${_id}`);
+  // }
 
-  updateUser(_id: string, body: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${_id}`, body);
-  }
+  // deleteUser(_id: string): Observable<any> {
+  //   return this.http.delete(`${this.baseUrl}/${_id}`);
+  // }
+
+  // updateUser(_id: string, body: any): Observable<any> {
+  //   return this.http.put(`${this.baseUrl}/${_id}`, body);
+  // }
 }
